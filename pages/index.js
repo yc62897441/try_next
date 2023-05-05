@@ -3,7 +3,19 @@ import Link from 'next/link'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 
-export default function Home() {
+// fetch data function
+import { getSortedPostsData } from '../lib/posts'
+// pass data into component as props
+export async function getStaticProps() {
+    const allPostsData = getSortedPostsData()
+    return {
+        props: {
+            allPostsData,
+        },
+    }
+}
+
+export default function Home({ allPostsData }) {
     return (
         <Layout home>
             <Head>
@@ -25,9 +37,27 @@ export default function Home() {
                 <li>
                     <Link href="/teaching/AssetsMetadataCSS">Assets, Metadata, and CSS</Link>
                 </li>
+                <li>
+                    <Link href="/teaching/Pre-renderingAndDataFetching">
+                        Pre-rendering and Data Fetching
+                    </Link>
+                </li>
             </ol>
 
-            <h1>process.env.apiKey：{process.env.apiKey}</h1>
+            <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+                <h2 className={utilStyles.headingLg}>Blog</h2>
+                <ul className={utilStyles.list}>
+                    {allPostsData.map(({ id, date, title }) => (
+                        <li className={utilStyles.listItem} key={id}>
+                            {title}
+                            <br />
+                            {id}
+                            <br />
+                            {date}
+                        </li>
+                    ))}
+                </ul>
+            </section>
         </Layout>
     )
 }
