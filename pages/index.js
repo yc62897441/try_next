@@ -26,6 +26,8 @@ export default function Home() {
                     <Link href="/teaching/AssetsMetadataCSS">Assets, Metadata, and CSS</Link>
                 </li>
             </ol>
+
+            <h1>process.env.apiKey：{process.env.apiKey}</h1>
         </Layout>
     )
 }
