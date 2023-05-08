@@ -46,6 +46,9 @@ export default function Home({ allPostsData }) {
                 <li>
                     <Link href="/teaching/DynamicRoutes">Dynamic Routes</Link>
                 </li>
+                <li>
+                    <Link href="/teaching/APIRoutes">API Routes</Link>
+                </li>
             </ol>
 
             <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
